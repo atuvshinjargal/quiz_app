@@ -10,6 +10,19 @@ class PlanScreen extends StatefulWidget {
 
 class _PlanScreenState extends State<PlanScreen> {
   final plan = Plan();
+  late ScrollController scrollController;
+  @override
+  void initState() {
+    scrollController = ScrollController()..addListener(() {
+      FocusScope.of(context).requestFocus(FocusNode());
+    });
+    super.initState();
+  }
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +58,7 @@ class _PlanScreenState extends State<PlanScreen> {
 }
   Widget _buildList(){
     return ListView.builder(
+      controller: scrollController,
       itemCount: plan.tasks.length,
       itemBuilder: (context, index) => 
       _buildTaskTile(plan.tasks[index],),
