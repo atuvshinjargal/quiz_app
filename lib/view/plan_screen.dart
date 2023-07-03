@@ -24,19 +24,22 @@ class _PlanScreenState extends State<PlanScreen> {
   return FloatingActionButton(
     child: Icon(Icons.add),
     onPressed: () {
-      Task task1 = Task(
-        description: '1-р даалгавар',
-        complete: false,
-      );
-      task1.complete = true;
-      task1.description = '2-р даалгавар';
-      task1.date = '2023-07-03';
-      task1.updateTask(
-        description: 'Зассан 3',
-        complete: false,
-        date: '2023-07-03',
-      );
-      print(task1.date);
+      setState(() {
+        plan.tasks.add(Task());
+      });
+      // Task task1 = Task(
+      //   description: '1-р даалгавар',
+      //   complete: false,
+      // );
+      // task1.complete = true;
+      // task1.description = '2-р даалгавар';
+      // task1.date = '2023-07-03';
+      // task1.updateTask(
+      //   description: 'Зассан 3',
+      //   complete: false,
+      //   date: '2023-07-03',
+      // );
+      // print(task1.date);
     },
   );
 }
