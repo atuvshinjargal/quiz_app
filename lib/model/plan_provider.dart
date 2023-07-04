@@ -4,7 +4,7 @@ import './data_layer.dart';
 class PlanProvider extends InheritedWidget {
   final _plan = Plan();
   PlanProvider({
-    required Key key,
+    Key? key,
     required Widget child,
   }) : super(
           key: key,
@@ -12,4 +12,9 @@ class PlanProvider extends InheritedWidget {
         );
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => false;
+  static Plan of(BuildContext context){
+    final provider = 
+    context.dependOnInheritedWidgetOfExactType<PlanProvider>();
+    return provider!._plan;
+  }
 }
