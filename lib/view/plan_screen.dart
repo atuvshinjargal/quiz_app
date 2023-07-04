@@ -3,14 +3,15 @@ import 'package:quiz_app/model/plan_provider.dart';
 import '../model/data_layer.dart'; //.. folder -s garah
 
 class PlanScreen extends StatefulWidget {
-  const PlanScreen({super.key});
+  final Plan plan;
+  const PlanScreen({super.key,required this.plan});
 
   @override
   State<PlanScreen> createState() => _PlanScreenState();
 }
 
 class _PlanScreenState extends State<PlanScreen> {
-  final plan = Plan();
+  Plan get plan => widget.plan;
   late ScrollController scrollController;
   @override
   void initState() {
@@ -29,7 +30,7 @@ class _PlanScreenState extends State<PlanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final plan = PlanProvider.of(context);
+ 
     return Scaffold(
       appBar: AppBar(
         title: Text('Master plan'),
@@ -48,7 +49,6 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildAddTaskButton() {
-    final plan = PlanProvider.of(context);
     return FloatingActionButton(
       child: Icon(Icons.add),
       onPressed: () {
@@ -73,7 +73,6 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildList() {
-    final plan = PlanProvider.of(context);
     return ListView.builder(
       controller: scrollController,
       itemCount: plan.tasks.length,
