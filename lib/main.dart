@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/model/plan_provider.dart';
 import 'package:quiz_app/quiz.dart';
 import 'package:quiz_app/result.dart';
+import 'package:quiz_app/view/plan_creator_screen.dart';
 import 'package:quiz_app/view/plan_screen.dart';
 
 void main() => runApp(MyApp());
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: PlanProvider(child: PlanScreen(),),
+        home: PlanProvider(child: PlanCreatorScreen(),),
     // Scaffold(
     //   appBar: AppBar(
     //     title: const Text("Quiz App"),
