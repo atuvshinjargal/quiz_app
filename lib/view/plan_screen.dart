@@ -89,7 +89,8 @@ class _PlanScreenState extends State<PlanScreen> {
         value: task.complete,
         onChanged: (value) {
           setState(() {
-            task.complete = value!;
+            task.complete = value!;// true, false
+            print(value);
           });
         },
       ),
