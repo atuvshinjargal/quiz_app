@@ -59,7 +59,7 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
 
   void addPlan() {
     final text = textController.text;
-    
+
     final controller = PlanProvider.of(context);
     controller.addNewplan(name: text);
 
@@ -90,18 +90,30 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
       itemCount: plans.length,
       itemBuilder: (context, index) {
         final plan = plans[index];
-        return ListTile(
-          title: Text(plan.name),
-          subtitle: Text(plan.complenetnessMessage),
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => PlanScreen(
-                  plan: plan,
-                ),
-              ),
-            );
+        return Dismissible(
+          key: ValueKey(plan),
+          background: Container(
+            color: Colors.red,
+          ),
+          direction: DismissDirection.endToStart,
+          onDismissed: (direction) {
+            final controller = PlanProvider.of(context);
+            controller.deletePlan(plan);
+            setState(() {});
           },
+          child: ListTile(
+            title: Text(plan.name),
+            subtitle: Text(plan.complenetnessMessage),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => PlanScreen(
+                    plan: plan,
+                  ),
+                ),
+              );
+            },
+          ),
         );
       },
     );
