@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/controller/plan_controller.dart';
 import './data_layer.dart';
 
 class PlanProvider extends InheritedWidget {
-  final _plans = <Plan>[];
+  final _controller = PlanController();
   PlanProvider({
     Key? key,
     required Widget child,
@@ -12,9 +13,9 @@ class PlanProvider extends InheritedWidget {
         );
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => false;
-  static List<Plan> of(BuildContext context){
+  static PlanController of(BuildContext context){
     final provider = 
     context.dependOnInheritedWidgetOfExactType<PlanProvider>();
-    return provider!._plans;
+    return provider!._controller;
   }
 }

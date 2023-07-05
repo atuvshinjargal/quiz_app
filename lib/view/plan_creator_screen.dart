@@ -59,18 +59,17 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
 
   void addPlan() {
     final text = textController.text;
-    if (text.isEmpty) {
-      return;
-    }
-    final plan = Plan()..name = text;
-    PlanProvider.of(context).add(plan);
+    
+    final controller = PlanProvider.of(context);
+    controller.addNewplan(name: text);
+
     textController.clear();
     FocusScope.of(context).requestFocus(FocusNode());
     setState(() {});
   }
 
   Widget _buildMasterPlans() {
-    final plans = PlanProvider.of(context);
+    final plans = PlanProvider.of(context).plans;
     if (plans.isEmpty) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -31,7 +31,25 @@ class PlanController {
     final plan = Plan()..name = name;
     _plans.add(plan);
   }
-  void deletePlan(Plan plan){
+
+  void deletePlan(Plan plan) {
     _plans.remove(plan);
+  }
+
+  void createNewTask({required Plan plan, String? description}) {
+    if (description == null || description.isEmpty) {
+      description = 'New Task';
+    }
+    description = _checkForDuplicates(
+      plan.tasks.map(
+        (task) => task.description,
+      ),
+      description,
+    );
+    final task = Task()..description = description;
+    plan.tasks.add(task);
+  }
+  void deleteTask({required Plan plan, required Task task}){
+    plan.tasks.remove(task);
   }
 }
